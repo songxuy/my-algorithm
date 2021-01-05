@@ -14,7 +14,7 @@
  * 输入: [1, 2, 3, 5]
  * 输出: false
  * 解释: 数组不能分割成两个元素和相等的子集.
- * 
+ * https://leetcode-cn.com/problems/partition-equal-subset-sum/
  */
 
 var canPartition = function(nums) {
