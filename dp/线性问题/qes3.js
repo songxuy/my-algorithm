@@ -7,6 +7,7 @@
  * 输入：text1 = "abcde", text2 = "ace" 
  * 输出：3  
  * 解释：最长公共子序列是 "ace"，它的长度为 3。
+ * https://leetcode-cn.com/problems/longest-common-subsequence/
  */
 /**
  * @param {string} text1

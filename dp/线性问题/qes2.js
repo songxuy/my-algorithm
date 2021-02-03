@@ -5,6 +5,7 @@
  * 输入：triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
  * 输出：11
  * 解释：自顶向下的最小路径和为 11（即，2 + 3 + 5 + 1 = 11）
+ * https://leetcode-cn.com/problems/triangle/
  */
 /**
  * @param {number[][]} triangle
