@@ -21,15 +21,15 @@ var strangePrinter = function(s) {
       dp[i][i] = 1;
   }
   for (let len = 2; len <= n; len++){
-      for(let i = 0; i + len -1 < n; i++) {
-          let j = i + len -1;
-          dp[i][j] = dp[i+1][j] + 1;
-          for(let k = i+ 1; k <= j; k++){
-              if(s.charAt(i) == s.charAt(k)){
-                  dp[i][j] = Math.min(dp[i][j], dp[i][k-1] + dp[k+1][j])
-              }
-          }
+    for(let i = 0; i + len -1 < n; i++) {
+      let j = i + len -1;
+      dp[i][j] = dp[i+1][j] + 1;
+      for(let k = i+ 1; k <= j; k++){
+        if(s.charAt(i) == s.charAt(k)){
+          dp[i][j] = Math.min(dp[i][j], dp[i][k-1] + dp[k+1][j])
+        }
       }
+    }
   }
   return dp[0][n-1]
 };
