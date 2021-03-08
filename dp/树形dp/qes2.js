@@ -3,7 +3,6 @@
  * 路径和 是路径中各节点值的总和。
  * 给你一个二叉树的根节点 root ，返回其 最大路径和 。
  * @Demo 
- * 输入: [3,2,3,null,3,null,1]
  * 输入：root = [1,2,3]
  * 输出：6
  * 解释：最优路径是 2 -> 1 -> 3 ，路径和为 2 + 1 + 3 = 6
@@ -17,11 +16,12 @@ var maxPathSum = function(root) {
   if(root == null) return 0;
   let maxSum = Number.MIN_SAFE_INTEGER;
   let dps = (root) => {
-      if(root == null) return 0;
-      let leftMax = Math.max(0, dps(root.left));
-      let rightMax = Math.max(0, dps(root.right));
-      maxSum = Math.max(maxSum, root.val + leftMax + rightMax);
-      return root.val + Math.max(leftMax, rightMax)
+    if(root == null) return 0;
+    let leftMax = Math.max(0, dps(root.left));
+    let rightMax = Math.max(0, dps(root.right));
+    maxSum = Math.max(maxSum, root.val + leftMax + rightMax);
+    /* 将单边最大值传给父节点 */
+    return root.val + Math.max(leftMax, rightMax)
   }
   dps(root)
   return maxSum
