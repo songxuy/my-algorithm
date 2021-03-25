@@ -16,7 +16,7 @@
  // 第一步:定义状态
  // 可以定义如下
  // dp[i][j][0] 表示第i天交易了j次时卖出后的累计最大利润
- //  dp[i][j][1] 表示第i天交易了j次时买入后的累计最大利润
+ // dp[i][j][1] 表示第i天交易了j次时买入后的累计最大利润
 
 
 
@@ -61,4 +61,35 @@ function maxProfit2(prices) {
       }
   }
   return profits;
+};
+
+/*
+  * k固定为两次
+ https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/submissions/
+ */
+var maxProfit = function(prices) {
+  if(prices==null || prices.length==0) {
+      return 0;
+  }
+  let n = prices.length;
+  //定义二维数组，5种状态  
+  let dp = new Array(n).fill(0).map(x => new Array(5).fill(0));
+  //初始化第一天的状态
+  dp[0][0] = 0;
+  dp[0][1] = -prices[0];
+  dp[0][2] = 0;
+  dp[0][3] = -prices[0];
+  dp[0][4] = 0;
+  for(let i=1;i<n;++i) {
+      //dp[i][0]相当于初始状态，它只能从初始状态转换来
+      dp[i][0] = dp[i-1][0];
+      //处理第一次买入、第一次卖出
+      dp[i][1] = Math.max(dp[i-1][1],dp[i-1][0]-prices[i]);
+      dp[i][2] = Math.max(dp[i-1][2],dp[i-1][1]+prices[i]);
+      //处理第二次买入、第二次卖出
+      dp[i][3] = Math.max(dp[i-1][3],dp[i-1][2]-prices[i]);
+      dp[i][4] = Math.max(dp[i-1][4],dp[i-1][3]+prices[i]);
+  }
+  //返回最大值
+  return Math.max(dp[n-1][0],dp[n-1][1],dp[n-1][2],dp[n-1][3],dp[n-1][4]);
 };
